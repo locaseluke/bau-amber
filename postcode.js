@@ -3,7 +3,8 @@ function setCookie(name, value, days) {
     expirationDate.setTime(expirationDate.getTime() + days * 24 * 60 * 60 * 1000);
     const expires = "expires=" + expirationDate.toUTCString();
     const domain = "domain=amber.com.au";
-    document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/;" + domain;
+    //document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/;" + domain;
+    document.cookie = name + "=" + encodeURIComponent(value) + "; " + expires + "; " + domain + "; path=/";
   }
   
   function getCookie(name) {
@@ -37,7 +38,7 @@ function setCookie(name, value, days) {
     // console.log(event, 'event')
   
     const inputElement = document.querySelectorAll('.is-bau-pcode-input, .is-bau-pcode-input-2, .is-bau-pcode-input-3, .is-bau-pcode-input-4');
-    // const userInput = inputElement.value.trim();
+    //const userInput = inputElement.value.trim();
     let invalidElement = "";
     let userInput = "";
 
@@ -83,7 +84,7 @@ function setCookie(name, value, days) {
       .then(response => response.text())
       .then(data => {
         const numberList = data.split('\n').map(number => parseInt(number));
-        if (!numberList.includes(parseInt(userInput))) {
+        if (!numberList.includes(parseInt(userInput.value))) {
           console.log('Input has no code match!');
           invalidElement.classList.add('no-code');
           return;
