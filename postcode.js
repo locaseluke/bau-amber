@@ -5,6 +5,7 @@ function setCookie(name, value, days) {
     const domain = "domain=amber.com.au"; 
     document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/;" + domain;
   }
+//update
 
 function getCookie(name) {
  const cookieName = name + "=";
