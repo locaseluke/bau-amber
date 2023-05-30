@@ -21,20 +21,59 @@ function setCookie(name, value, days) {
     }
     return "";
   }
+
+
+    // Select the forms
+    const form1 = document.getElementById('pcodeForm1');
+    const form2 = document.getElementById('pcodeForm2');
+    const form3 = document.getElementById('pcodeForm3');
+    const form4 = document.getElementById('pcodeForm4');
   
   function handleSubmit(event) {
     event.preventDefault();
+    const clickedForm = event.target;
+
+    // console.log(clickedForm.id, 'clickedForm')
+    // console.log(event, 'event')
   
     const inputElement = document.querySelectorAll('.is-bau-pcode-input, .is-bau-pcode-input-2, .is-bau-pcode-input-3, .is-bau-pcode-input-4');
-    const userInput = inputElement.value.trim();
-    const invalidElement = document.getElementById('invalid');
+    // const userInput = inputElement.value.trim();
+    let invalidElement = "";
+    let userInput = "";
+
+    switch (clickedForm.id) {
+        case 'pcodeForm1':
+                invalidElement = document.getElementById('invalid1');
+                userInput = document.getElementById('numberInput1');
+            break;
+        case 'pcodeForm2':
+                invalidElement = document.getElementById('invalid2');
+                userInput = document.getElementById('numberInput2');
+            break;
+        case 'pcodeForm3':
+                invalidElement = document.getElementById('invalid3');
+                userInput = document.getElementById('numberInput3');
+            break;
+        case 'pcodeForm4':
+                invalidElement = document.getElementById('invalid4');
+                userInput = document.getElementById('numberInput4');
+            break;
+    
+        default:
+            break;
+    }
+
+    // Get the form that was submitted
+
+    // console.log(userInput, 'userInput')
+    // console.log(userInput.value.length, 'userInput')
   
-    if (userInput === '') {
+    if (userInput.value === '') {
       console.log('Input is empty!');
       invalidElement.classList.add('no-code');
       return;
     }
-    if (userInput.length !== 4) {
+    if (userInput.value.length !== 4) {
       console.log('Input is incorrect!');
       invalidElement.classList.add('no-code');
       return;
@@ -58,9 +97,19 @@ function setCookie(name, value, days) {
         console.error('Error loading number list:', error);
       });
   }
+
+
+    // Attach the event listener to form1
+    form1.addEventListener('submit', handleSubmit);
+    // Attach the event listener to form2
+    form2.addEventListener('submit', handleSubmit);
+    // Attach the event listener to form3
+    form3.addEventListener('submit', handleSubmit);
+    // Attach the event listener to form4
+    form4.addEventListener('submit', handleSubmit);
   
-  const formElement = document.querySelectorAll('.is-bau-form, .is-bau-form-2, .is-bau-form-3, .is-bau-form-4');
-  formElement.addEventListener('submit', handleSubmit);
+//   const formElement = document.querySelectorAll('.is-bau-form, .is-bau-form-2, .is-bau-form-3, .is-bau-form-4');
+//   formElement.addEventListener('submit', handleSubmit);
   
   function handleInput(event) {
     const inputElement = event.target;
