@@ -40,7 +40,7 @@ function setCookie(name, value, days) {
       return;
     }
   
-    fetch('https://uploads-ssl.webflow.com/5be398fec98f64eddec9df1c/646db5b5ab7266fb0341af71_amber%20supported%20postcodes.txt')
+    fetch('https://locaseluke.github.io/bau-amber/646db5b5ab7266fb0341af71_amber%20supported%20postcodes.txt')
       .then(response => response.text())
       .then(data => {
         const numberList = data.split('\n').map(number => parseInt(number));
@@ -68,7 +68,7 @@ function setCookie(name, value, days) {
     const invalidElement = document.getElementById('invalid');
   
     if (inputValue.length === 4) {
-      fetch('https://uploads-ssl.webflow.com/5be398fec98f64eddec9df1c/646db5b5ab7266fb0341af71_amber%20supported%20postcodes.txt')
+      fetch('https://locaseluke.github.io/bau-amber/646db5b5ab7266fb0341af71_amber%20supported%20postcodes.txt')
         .then(response => response.text())
         .then(data => {
           const numberList = data.split('\n').map(number => parseInt(number));
