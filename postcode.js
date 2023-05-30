@@ -25,7 +25,7 @@ function setCookie(name, value, days) {
   function handleSubmit(event) {
     event.preventDefault();
   
-    const inputElement = document.querySelector('.is-bau-pcode-input');
+    const inputElement = document.querySelector('.is-bau-pcode-input, .is-bau-pcode-input-2, .is-bau-pcode-input-3, .is-bau-pcode-input-4');
     const userInput = inputElement.value.trim();
     const invalidElement = document.getElementById('invalid');
   
@@ -40,7 +40,7 @@ function setCookie(name, value, days) {
       return;
     }
   
-    fetch('https://locaseluke.github.io/bau-amber/646db5b5ab7266fb0341af71_amber%20supported%20postcodes.txt')
+    fetch('https://uploads-ssl.webflow.com/5be398fec98f64eddec9df1c/646db5b5ab7266fb0341af71_amber%20supported%20postcodes.txt')
       .then(response => response.text())
       .then(data => {
         const numberList = data.split('\n').map(number => parseInt(number));
@@ -59,7 +59,7 @@ function setCookie(name, value, days) {
       });
   }
   
-  const formElement = document.querySelector('.is-bau-form');
+  const formElement = document.querySelector('.is-bau-form, .is-bau-form-2, .is-bau-form-3, .is-bau-form-4');
   formElement.addEventListener('submit', handleSubmit);
   
   function handleInput(event) {
@@ -68,7 +68,7 @@ function setCookie(name, value, days) {
     const invalidElement = document.getElementById('invalid');
   
     if (inputValue.length === 4) {
-      fetch('https://locaseluke.github.io/bau-amber/646db5b5ab7266fb0341af71_amber%20supported%20postcodes.txt')
+      fetch('https://uploads-ssl.webflow.com/5be398fec98f64eddec9df1c/646db5b5ab7266fb0341af71_amber%20supported%20postcodes.txt')
         .then(response => response.text())
         .then(data => {
           const numberList = data.split('\n').map(number => parseInt(number));
@@ -86,11 +86,11 @@ function setCookie(name, value, days) {
     }
   }
   
-  const inputElement = document.querySelector('.is-bau-pcode-input');
+  const inputElement = document.querySelector('.is-bau-pcode-input, .is-bau-pcode-input-2, .is-bau-pcode-input-3, .is-bau-pcode-input-4');
   inputElement.addEventListener('input', handleInput);
   
   function handleDocumentClick(event) {
-    const formElement = document.querySelector('.is-bau-form');
+    const formElement = document.querySelector('.is-bau-form, .is-bau-form-2, .is-bau-form-3, .is-bau-form-4');
     const invalidElement = document.getElementById('invalid');
   
     if (!formElement.contains(event.target)) {
