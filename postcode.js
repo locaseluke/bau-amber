@@ -25,7 +25,7 @@ function setCookie(name, value, days) {
   function handleSubmit(event) {
     event.preventDefault();
   
-    const inputElement = document.querySelector('.is-bau-pcode-input, .is-bau-pcode-input-2, .is-bau-pcode-input-3, .is-bau-pcode-input-4');
+    const inputElement = document.querySelectorAll('.is-bau-pcode-input, .is-bau-pcode-input-2, .is-bau-pcode-input-3, .is-bau-pcode-input-4');
     const userInput = inputElement.value.trim();
     const invalidElement = document.getElementById('invalid');
   
@@ -59,7 +59,7 @@ function setCookie(name, value, days) {
       });
   }
   
-  const formElement = document.querySelector('.is-bau-form, .is-bau-form-2, .is-bau-form-3, .is-bau-form-4');
+  const formElement = document.querySelectorAll('.is-bau-form, .is-bau-form-2, .is-bau-form-3, .is-bau-form-4');
   formElement.addEventListener('submit', handleSubmit);
   
   function handleInput(event) {
@@ -86,11 +86,11 @@ function setCookie(name, value, days) {
     }
   }
   
-  const inputElement = document.querySelector('.is-bau-pcode-input, .is-bau-pcode-input-2, .is-bau-pcode-input-3, .is-bau-pcode-input-4');
+  const inputElement = document.querySelectorAll('.is-bau-pcode-input, .is-bau-pcode-input-2, .is-bau-pcode-input-3, .is-bau-pcode-input-4');
   inputElement.addEventListener('input', handleInput);
   
   function handleDocumentClick(event) {
-    const formElement = document.querySelector('.is-bau-form, .is-bau-form-2, .is-bau-form-3, .is-bau-form-4');
+    const formElement = document.querySelectorAll('.is-bau-form, .is-bau-form-2, .is-bau-form-3, .is-bau-form-4');
     const invalidElement = document.getElementById('invalid');
   
     if (!formElement.contains(event.target)) {
