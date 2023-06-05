@@ -3,8 +3,7 @@ function setCookie(name, value, days) {
     expirationDate.setTime(expirationDate.getTime() + days * 24 * 60 * 60 * 1000);
     const expires = "expires=" + expirationDate.toUTCString();
     const domain = "domain=amber.com.au";
-    //document.cookie = name + "=" + encodeURIComponent(value.value) + "; " + expires + "; path=/; " + domain;
-    document.cookie = name + "=" + encodeURIComponent(value.value) + "; " + expires + "; path=/; " + domain + ";";
+    document.cookie = name + "=" + encodeURIComponent(value.value) + "; " + expires + "; path=/; " + domain;
   }
   
   function getCookie(name) {
