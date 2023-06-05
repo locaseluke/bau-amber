@@ -122,7 +122,7 @@ function setCookie(name, value, days) {
         '&utm_content=' + encodeURIComponent(utmParameters.handleSubmitUTMContent) +
         '&campaignid=' + encodeURIComponent(utmParameters.handleSubmitCampaignid);
   
-        setCookie('postcode', userInput, 1, redirectURL); // Cookie will expire in 1 day
+        setCookie('postcode', userInput, 1); // Cookie will expire in 1 day
   
         window.location.href = redirectURL;
       })
