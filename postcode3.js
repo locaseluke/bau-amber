@@ -1,27 +1,3 @@
-function setCookie(name, value, days) {
-  const expirationDate = new Date();
-  expirationDate.setTime(expirationDate.getTime() + days * 24 * 60 * 60 * 1000);
-  const expires = "expires=" + expirationDate.toUTCString();
-  const domain = "domain=amber.com.au";
-  document.cookie = name + "=" + encodeURIComponent(value.value) + "; " + expires + "; path=/; " + domain;
-}
-
-function getCookie(name) {
-  const cookieName = name + "=";
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const cookieArray = decodedCookie.split(";");
-  for (let i = 0; i < cookieArray.length; i++) {
-    let cookie = cookieArray[i];
-    while (cookie.charAt(0) === " ") {
-      cookie = cookie.substring(1);
-    }
-    if (cookie.indexOf(cookieName) === 0) {
-      return cookie.substring(cookieName.length, cookie.length);
-    }
-  }
-  return "";
-}
-
 $(document).ready(function () {
   $(".post-code-input").attr("maxlength", "4");
 });
@@ -33,27 +9,33 @@ $(document).ready(function () {
   const form3 = document.getElementById('pcodeForm3');
   const form4 = document.getElementById('pcodeForm4');
 
-function buildURL(postcode) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const utmSource = urlParams.get("utm_source");
-  const utmMedium = urlParams.get("utm_medium");
-  const utmCampaign = urlParams.get("utm_campaign");
-
-  const url = new URL("https://amber.com.au/pricing");
-  url.searchParams.append("postcode", postcode);
-
-  if (utmSource) {
-    url.searchParams.append("utm_source", utmSource);
+  function buildURL(postcode) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get("utm_source");
+    const utmMedium = urlParams.get("utm_medium");
+    const utmCampaign = urlParams.get("utm_campaign");
+    const couponCode = urlParams.get("couponcode"); 
+  
+    const url = new URL("https://amber.com.au/pricing/");
+  
+    if (couponCode) {
+      url.searchParams.append("couponcode", couponCode);
+    }
+  
+    url.searchParams.append("postcode", postcode);
+  
+    if (utmSource) {
+      url.searchParams.append("utm_source", utmSource);
+    }
+    if (utmMedium) {
+      url.searchParams.append("utm_medium", utmMedium);
+    }
+    if (utmCampaign) {
+      url.searchParams.append("utm_campaign", utmCampaign);
+    }
+  
+    return url.toString();
   }
-  if (utmMedium) {
-    url.searchParams.append("utm_medium", utmMedium);
-  }
-  if (utmCampaign) {
-    url.searchParams.append("utm_campaign", utmCampaign);
-  }
-
-  return url.toString();
-}
 
 function handleSubmit(event) {
   event.preventDefault();
