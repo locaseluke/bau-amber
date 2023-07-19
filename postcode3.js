@@ -14,28 +14,20 @@ $(document).ready(function () {
     const utmSource = urlParams.get("utm_source");
     const utmMedium = urlParams.get("utm_medium");
     const utmCampaign = urlParams.get("utm_campaign");
-    const couponCode = urlParams.get("couponcode"); 
+    const couponCode = urlParams.get("couponcode");
   
     const url = new URL("https://amber.com.au/pricing/");
   
     if (couponCode) {
-      url.searchParams.append("couponcode", couponCode);
+      urlParams.set("couponcode", couponCode);
     }
-  
-    url.searchParams.append("postcode", postcode);
-  
-    if (utmSource) {
-      url.searchParams.append("utm_source", utmSource);
-    }
-    if (utmMedium) {
-      url.searchParams.append("utm_medium", utmMedium);
-    }
-    if (utmCampaign) {
-      url.searchParams.append("utm_campaign", utmCampaign);
-    }
+    urlParams.set("postcode", postcode);
+    
+    url.search = urlParams.toString();
   
     return url.toString();
   }
+  
 
 function handleSubmit(event) {
   event.preventDefault();
