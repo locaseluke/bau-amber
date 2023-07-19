@@ -16,12 +16,12 @@ $(document).ready(function () {
     const utmCampaign = urlParams.get("utm_campaign");
     const couponCode = urlParams.get("couponcode"); 
   
-    const url = new URL("https://amber.com.au/pricing/");
+    const defaultCouponCode = "CBACUSTOMER22";
+    const finalCouponCode = couponCode || defaultCouponCode;
   
-    if (couponCode) {
-      url.searchParams.append("couponcode", couponCode);
-    }
+    const url = new URL("https://amber.com.au/pricing");
   
+    url.searchParams.append("couponcode", finalCouponCode);
     url.searchParams.append("postcode", postcode);
   
     if (utmSource) {
@@ -36,6 +36,7 @@ $(document).ready(function () {
   
     return url.toString();
   }
+  
 
 function handleSubmit(event) {
   event.preventDefault();
