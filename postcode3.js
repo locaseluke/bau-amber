@@ -10,29 +10,23 @@ $(document).ready(function () {
   const form4 = document.getElementById('pcodeForm4');
 
   function buildURL(postcode) {
-    const url = new URL(window.location.href);
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get("utm_source");
+    const utmMedium = urlParams.get("utm_medium");
+    const utmCampaign = urlParams.get("utm_campaign");
+    const couponCode = urlParams.get("couponcode");
   
-    const hasCbaParameter = url.href.includes('cba'); // Check if 'cba' is present in the URL
+    const url = new URL("https://amber.com.au/pricing/");
   
-    // Append '&cba_customer=true' to the search if 'cba' is present in the URL
-    if (hasCbaParameter) {
-      url.searchParams.set('cba_customer', 'true');
-    }
-  
-    // Other parameter handling remains the same
-    const utmSource = url.searchParams.get('utm_source');
-    const utmMedium = url.searchParams.get('utm_medium');
-    const utmCampaign = url.searchParams.get('utm_campaign');
-    const couponCode = url.searchParams.get('couponcode');
-    
     if (couponCode) {
-      url.searchParams.set('couponcode', couponCode);
+      urlParams.set("couponcode", couponCode);
     }
-    url.searchParams.set('postcode', postcode);
+    urlParams.set("postcode", postcode);
+    
+    url.search = urlParams.toString();
   
     return url.toString();
   }
-  
   
 
 function handleSubmit(event) {
