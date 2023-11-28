@@ -45,9 +45,9 @@ function handleSubmit(event) {
   // const invalidElement = document.getElementById("invalid");
   const couponCode1 = document.getElementById('coupon-code') ? document.getElementById('coupon-code').value : '';
     const couponCode2 = document.getElementById('coupon-code-2') ? document.getElementById('coupon-code-2').value : '';
-    const couponCode = couponCode1 || couponCode2;
+    const inputCouponCode = couponCode1 || couponCode2;
 
-    const url = buildURL(userInput.value, couponCode);
+    const url = buildURL(userInput.value, inputCouponCode);
 
 
   let invalidElement = "";
