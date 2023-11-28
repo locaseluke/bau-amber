@@ -91,23 +91,27 @@ function handleSubmit(event) {
   fetch(
     "https://uploads-ssl.webflow.com/5be398fec98f64eddec9df1c/646db5b5ab7266fb0341af71_amber%20supported%20postcodes.txt"
   )
-    .then((response) => response.text())
-    .then((data) => {
-      const numberList = data
-        .split("\n")
-        .map((number) => parseInt(number));
-      if (!numberList.includes(parseInt(userInput.value))) {
-        console.log("Input has no code match!");
-        invalidElement.classList.add("no-code");
-        return;
-      }
+  .then((response) => response.text())
+  .then((data) => {
+    const numberList = data.split("\n").map((number) => parseInt(number));
+    if (!numberList.includes(parseInt(userInput.value))) {
+      console.log("Input has no code match!");
+      invalidElement.classList.add("no-code");
+      return;
+    }
 
-      const url = buildURL(userInput.value);
-      window.location.href = url;
-    })
-    .catch((error) => {
-      console.error("Error loading number list:", error);
-    });
+    // Generate the URL but don't redirect
+    const url = buildURL(userInput.value, inputCouponCode);
+
+    // Log the URL to the console instead of redirecting
+    console.log("Generated URL:", url);
+
+    // Comment out or remove the line that redirects to the URL
+    // window.location.href = url;
+  })
+  .catch((error) => {
+    console.error("Error loading number list:", error);
+  });
 }
 
 
