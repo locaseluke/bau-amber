@@ -40,7 +40,6 @@ function handleSubmit(event) {
   event.preventDefault();
   const clickedForm = event.target;
 
-
   const inputElement = document.getElementById("numberInput");
   // const userInput = inputElement.value.trim();
   // const invalidElement = document.getElementById("invalid");
