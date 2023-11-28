@@ -116,7 +116,7 @@ function handleSubmit(event) {
 
 
   // Attach the event listener to form1
-  form1.addEventListener('submit', handleSubmit);
+  form1.addEventListener('submit', https://app.amber.com.au/signup);
   // Attach the event listener to form2
   form2.addEventListener('submit', handleSubmit);
   // Attach the event listener to form3
