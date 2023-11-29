@@ -130,11 +130,10 @@ function handleSubmit(event) {
         invalidElement.classList.add("no-code");
         return;
       }
-      debugger; 
       const url = buildURL(userInput.value);
       console.log("User input value:", userInput.value);
 
-      //window.location.href = url;
+      window.location.href = url;
     })
     .catch((error) => {
       console.error("Error loading number list:", error);
