@@ -10,11 +10,25 @@ $(document).ready(function () {
   const form4 = document.getElementById('pcodeForm4');
 
   function getCookie(name) {
+    // This line will log the name of the cookie you're trying to get.
+    console.log("Getting cookie for name:", name);
+
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
     ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
+
+    // This line will log the raw match from the cookie string.
+    console.log("Matches found:", matches);
+
+    // Check if matches is not null and return the cookie value or undefined.
+    let cookieValue = matches ? decodeURIComponent(matches[1]) : undefined;
+
+    // This line will log the value of the cookie.
+    console.log("Cookie value:", cookieValue);
+
+    return cookieValue;
 }
+
 
 function buildURL(postcode) {
   const urlParams = new URLSearchParams(window.location.search);
