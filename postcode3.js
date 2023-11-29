@@ -38,6 +38,7 @@ function buildURL(postcode) {
 
   // Get coupon code from the cookie
   const cookieCouponCode = getCookie("coupon-code");
+  console.log("Cookie coupon code:", cookieCouponCode);
 
   const currentPageURL = window.location.href;
   const hasCbaText = currentPageURL.includes('cba'); // Check if 'cba' is present in the URL
@@ -63,6 +64,7 @@ function buildURL(postcode) {
 
   url.search = urlParams.toString();
 
+  console.log("Final URL:", url.toString());
   return url.toString();
 }
 
@@ -128,9 +130,11 @@ function handleSubmit(event) {
         invalidElement.classList.add("no-code");
         return;
       }
-
+      debugger; 
       const url = buildURL(userInput.value);
-      window.location.href = url;
+      console.log("User input value:", userInput.value);
+
+      //window.location.href = url;
     })
     .catch((error) => {
       console.error("Error loading number list:", error);
