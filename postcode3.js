@@ -9,32 +9,49 @@ $(document).ready(function () {
   const form3 = document.getElementById('pcodeForm3');
   const form4 = document.getElementById('pcodeForm4');
 
-  function buildURL(postcode) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const utmSource = urlParams.get("utm_source");
-    const utmMedium = urlParams.get("utm_medium");
-    const utmCampaign = urlParams.get("utm_campaign");
-    const couponCode = urlParams.get("couponcode");
-  
-    const currentPageURL = window.location.href;
-    const hasCbaText = currentPageURL.includes('cba'); // Check if 'cba' is present in the URL
-  
-    const url = new URL("https://amber.com.au/pricing/");
-  
-    if (couponCode) {
-      urlParams.set("couponcode", couponCode);
-    }
-    urlParams.set("postcode", postcode);
-  
-    // Add '&cba_customer=true' only if 'cba' is present in the URL
-    if (hasCbaText) {
-      urlParams.set("cba_customer", "true");
-    }
-  
-    url.search = urlParams.toString();
-  
-    return url.toString();
+  function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function buildURL(postcode) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmSource = urlParams.get("utm_source");
+  const utmMedium = urlParams.get("utm_medium");
+  const utmCampaign = urlParams.get("utm_campaign");
+
+  // Get coupon code from the cookie
+  const cookieCouponCode = getCookie("coupon-code");
+
+  const currentPageURL = window.location.href;
+  const hasCbaText = currentPageURL.includes('cba'); // Check if 'cba' is present in the URL
+
+  const url = new URL("https://amber.com.au/pricing/");
+
+  if (cookieCouponCode) {
+      urlParams.set("couponcode", cookieCouponCode);
+  } else {
+      // Fallback to URL parameter if cookie is not present
+      const couponCode = urlParams.get("couponcode");
+      if (couponCode) {
+          urlParams.set("couponcode", couponCode);
+      }
   }
+  
+  urlParams.set("postcode", postcode);
+
+  // Add '&cba_customer=true' only if 'cba' is present in the URL
+  if (hasCbaText) {
+      urlParams.set("cba_customer", "true");
+  }
+
+  url.search = urlParams.toString();
+
+  return url.toString();
+}
+
   
 function handleSubmit(event) {
   event.preventDefault();
