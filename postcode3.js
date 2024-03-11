@@ -57,12 +57,6 @@ function buildURL(postcode) {
   
   urlParams.set("postcode", postcode);
 
-  // Determine the state based on the postcode
-  const state = getStateFromPostcode(postcode);
-  if(state) {
-    urlParams.set("state", state);
-  }
-
   // Add '&cba_customer=true' only if 'cba' is present in the URL
   if (hasCbaText) {
       urlParams.set("cba_customer", "true");
@@ -70,21 +64,9 @@ function buildURL(postcode) {
 
   url.search = urlParams.toString();
 
-  console.log("Final URL with State:", url.toString());
+  console.log("Final URL:", url.toString());
   return url.toString();
 }
-
-// Helper function to determine the state based on the postcode
-function getStateFromPostcode(postcode) {
-  const pc = parseInt(postcode, 10); // Convert postcode to integer
-  if(pc >= 3000 && pc <= 3999 || pc >= 8000 && pc <= 8999) return "VIC";
-  if(pc >= 200 && pc <= 299 || pc >= 2600 && pc <= 2618 || pc >= 2900 && pc <= 2920) return "ACT";
-  if(pc >= 1000 && pc <= 1999 || pc >= 2000 && pc <= 2599 || pc >= 2620 && pc <= 2899 || pc >= 2921 && pc <= 2999) return "NSW";
-  if(pc >= 5000 && pc <= 5799 || pc >= 5800 && pc <= 5999) return "SA";
-  if(pc >= 4000 && pc <= 4999 || pc >= 9000 && pc <= 9999) return "QLD";
-  return null; // Return null if no state matches
-}
-
 
   
 function handleSubmit(event) {
@@ -212,4 +194,3 @@ function handleDocumentClick(event) {
 }
 
 document.addEventListener("click", handleDocumentClick);
-
